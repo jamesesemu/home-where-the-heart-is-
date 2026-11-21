@@ -1,0 +1,52 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 2160
+PlayResY: 3840
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Sub,Montserrat,180,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,8,0,5,120,120,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:02.55,0:00:02.85,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}Heyyyyy
+Dialogue: 0,0:00:02.85,0:00:03.89,Sub,GRANDMA,0,0,0,,{\pos(1080,540)}Hiiiiiii
+Dialogue: 0,0:00:03.89,0:00:04.23,Sub,GRANDMA,0,0,0,,{\pos(1080,540)}sweetheart
+Dialogue: 0,0:00:04.55,0:00:04.79,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}Grandma
+Dialogue: 0,0:00:04.79,0:00:05.83,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}how are you?
+Dialogue: 0,0:00:06.05,0:00:07.35,Sub,GRANDMA,0,0,0,,{\pos(1080,540)}Good good
+Dialogue: 0,0:00:08.25,0:00:09.59,Sub,GRANDMA,0,0,0,,{\pos(1080,540)}You got a
+Dialogue: 0,0:00:09.59,0:00:10.51,Sub,GRANDMA,0,0,0,,{\pos(1080,540)}girlfriend yet?
+Dialogue: 0,0:00:14.35,0:00:15.00,Sub,CRUSH,0,0,0,,{\pos(1080,540)}Hey Johnny
+Dialogue: 0,0:00:15.55,0:00:16.17,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}Oh hey
+Dialogue: 0,0:00:16.17,0:00:16.50,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}What's u-
+Dialogue: 0,0:00:17.10,0:00:17.89,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}oh wait
+Dialogue: 0,0:00:17.89,0:00:18.81,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}one sec-
+Dialogue: 0,0:00:20.25,0:00:21.95,Sub,CRUSH,0,0,0,,{\pos(1080,540)}Are you okay?
+Dialogue: 0,0:00:22.25,0:00:23.09,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}YEAH I'M GOOD
+Dialogue: 0,0:00:23.09,0:00:24.29,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}HAHAHA
+Dialogue: 0,0:00:27.10,0:00:27.62,Sub,FRIEND,0,0,0,,{\pos(1080,540)}Sooo
+Dialogue: 0,0:00:27.62,0:00:28.49,Sub,FRIEND,0,0,0,,{\pos(1080,540)}how'd it go?
+Dialogue: 0,0:00:28.85,0:00:29.07,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}Yeah
+Dialogue: 0,0:00:29.07,0:00:29.51,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}I don't think
+Dialogue: 0,0:00:29.51,0:00:29.85,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}she's ever
+Dialogue: 0,0:00:29.85,0:00:30.37,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}calling me
+Dialogue: 0,0:00:30.37,0:00:30.76,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}again
+Dialogue: 0,0:00:31.35,0:00:31.51,Sub,FRIEND,0,0,0,,{\pos(1080,540)}Aww
+Dialogue: 0,0:00:31.51,0:00:32.09,Sub,FRIEND,0,0,0,,{\pos(1080,540)}don't worry
+Dialogue: 0,0:00:32.09,0:00:32.80,Sub,FRIEND,0,0,0,,{\pos(1080,540)}buddy
+Dialogue: 0,0:00:32.80,0:00:33.60,Sub,FRIEND,0,0,0,,{\pos(1080,540)}there's plenty
+Dialogue: 0,0:00:33.60,0:00:34.26,Sub,FRIEND,0,0,0,,{\pos(1080,540)}of fish
+Dialogue: 0,0:00:34.26,0:00:35.31,Sub,FRIEND,0,0,0,,{\pos(1080,540)}in the sea
+Dialogue: 0,0:00:36.10,0:00:36.64,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}Uhh
+Dialogue: 0,0:00:36.64,0:00:37.08,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}thanks
+Dialogue: 0,0:00:43.20,0:00:43.45,Sub,BERT,0,0,0,,{\pos(1080,540)}What you
+Dialogue: 0,0:00:43.45,0:00:43.80,Sub,BERT,0,0,0,,{\pos(1080,540)}looking at?
+Dialogue: 0,0:00:44.30,0:00:44.64,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}What are you
+Dialogue: 0,0:00:44.64,0:00:45.02,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}looking at?
+Dialogue: 0,0:00:45.75,0:00:46.03,Sub,BERT,0,0,0,,{\pos(1080,540)}I dunno
+Dialogue: 0,0:00:46.03,0:00:46.93,Sub,BERT,0,0,0,,{\pos(1080,540)}I thought you
+Dialogue: 0,0:00:46.93,0:00:47.17,Sub,BERT,0,0,0,,{\pos(1080,540)}were looking
+Dialogue: 0,0:00:47.17,0:00:47.68,Sub,BERT,0,0,0,,{\pos(1080,540)}at something

@@ -9,16 +9,25 @@ import re
 import sys
 
 W, H = 2160, 3840
+# Matched to the Blobby reference Short (vidIQ frame analysis): bold geometric
+# sans, white with a solid black outline, no box/shadow, centred near the TOP
+# of frame (~14% down), 1-3 words per caption, one line at a time, hard cuts
+# with no animation, captions clear during pauses, commas/full stops dropped
+# ("?" kept), shouting/punchlines in ALL CAPS (set in the cue text).
 STYLE = dict(
-    font="Montserrat ExtraBold",
-    size=180,            # px at 2160x3840
-    primary="&H00FFFFFF",  # white text
+    font="Montserrat",
+    bold=-1,
+    size=180,             # px at 2160x3840 -> cap height ~3.3% of frame height
+    primary="&H00FFFFFF",  # white
     outline_col="&H00000000",
-    outline=13,
+    outline=8,            # ~5-6% of letter height
     shadow=0,
-    align=5,             # 5 = middle-centre (position set with \pos)
-    y=2560,              # ~2/3 down the frame
-    max_chars=18,        # per caption chunk
+    align=5,              # middle-centre anchor, placed with \pos
+    y=540,                # ~14% from the top
+    max_words=3,
+    max_chars=16,
+    min_dur=0.22,
+    join_gap=0.15,        # gaps shorter than this are bridged; longer ones go blank
 )
 
 
@@ -29,23 +38,25 @@ def ts(t):
     return f"{int(h)}:{int(m):02d}:{s:05.2f}"
 
 
-def chunk_words(words, max_chars):
+def clean(w):
+    """Reference keeps '?' but drops commas, full stops, ellipses and '!'."""
+    if w.endswith("-"):
+        return w
+    return re.sub(r"[,.…!]+$", "", w)
+
+
+def chunk_words(words, max_words, max_chars):
     chunks, cur = [], []
     for w in words:
-        if cur and len(" ".join(cur + [w])) > max_chars:
+        if cur and (len(cur) >= max_words or len(" ".join(cur + [w])) > max_chars):
             chunks.append(cur)
             cur = []
         cur.append(w)
-        # break after sentence punctuation
-        if re.search(r"[?!.…,]$", w) and len(" ".join(cur)) > 6:
+        if re.search(r"[?!.…,]$", w):  # natural phrase end
             chunks.append(cur)
             cur = []
     if cur:
         chunks.append(cur)
-    # avoid orphan single short words at the end
-    if len(chunks) > 1 and len(" ".join(chunks[-1])) <= 4:
-        last = chunks.pop()
-        chunks[-1] += last
     return chunks
 
 
@@ -66,33 +77,25 @@ def main(cues_path, out_path, words_path=None):
         "Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, "
         "Shadow, Alignment, MarginL, MarginR, MarginV, Encoding",
         f"Style: Sub,{st['font']},{st['size']},{st['primary']},&H000000FF,{st['outline_col']},&H00000000,"
-        f"0,0,0,0,100,100,0,0,1,{st['outline']},{st['shadow']},{st['align']},120,120,0,1",
+        f"{st['bold']},0,0,0,100,100,0,0,1,{st['outline']},{st['shadow']},{st['align']},120,120,0,1",
         "",
         "[Events]",
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
     ]
 
-    events = []  # (start, end, text, row)
+    events = []  # [start, end, text, who]
     for i, c in enumerate(data["cues"]):
-        # " / " in the cue text forces a caption break; otherwise auto-chunk
+        # " / " in the cue text marks a preferred phrase break
         words = [w for w in c["text"].split() if w != "/"]
-        overlapped = any(o is not c and o["who"] != c["who"] and o["start"] < c["end"]
-                         and c["start"] < o["end"] for o in data["cues"])
-        if overlapped:
-            chunks = [words]  # simultaneous speakers: keep each line whole, stacked
-        elif " / " in c["text"]:
-            chunks = [p.split() for p in c["text"].split(" / ")]
-        else:
-            chunks = chunk_words(words, st["max_chars"])
-        times = wt.get(str(i))  # list of [start, end] per script word, timeline secs
-        n = 0
+        chunks = [ch for part in c["text"].split(" / ")
+                  for ch in chunk_words(part.split(), st["max_words"], st["max_chars"])]
+        times = wt.get(str(i))  # [start, end] per script word, timeline secs
         dur = c["end"] - c["start"]
         total = sum(len(w) for w in words)
-        acc = 0
+        n = acc = 0
         for k, ch in enumerate(chunks):
             if times and len(times) == len(words):
-                s = times[n][0]
-                e = times[n + len(ch) - 1][1]
+                s, e = times[n][0], times[n + len(ch) - 1][1]
             else:
                 s = c["start"] + dur * acc / total
                 acc += sum(len(w) for w in ch)
@@ -102,34 +105,20 @@ def main(cues_path, out_path, words_path=None):
             if k == len(chunks) - 1:
                 e = c["end"]
             n += len(ch)
-            events.append([s, e, " ".join(ch), c["who"]])
+            events.append([s, e, " ".join(clean(w) for w in ch), c["who"]])
 
-    # chain consecutive chunks so captions don't flicker; hold short ends
+    # one caption on screen at a time: hard cut to the next caption,
+    # bridge tiny gaps, leave real pauses blank
     events.sort(key=lambda e: e[0])
-    for e in events:
-        e[1] = max(e[1], e[0] + 0.35)
     for a, b in zip(events, events[1:]):
-        if a[3] == b[3] and b[0] - a[1] < 0.25:
+        a[1] = max(a[1], a[0] + st["min_dur"])
+        if b[0] - a[1] < st["join_gap"]:
             a[1] = b[0]
+        a[1] = min(a[1], b[0])
+    events[-1][1] = max(events[-1][1], events[-1][0] + st["min_dur"])
 
-    # overlapping speakers (scene 1) -> stack: earlier speaker on top
-    for i, e in enumerate(events):
-        row = 0
-        for p in events[:i]:
-            if p[0] < e[1] and e[0] < p[1] and p[3] != e[3]:
-                row = 1
-        y = st["y"] + row * int(st["size"] * 1.25)
-        if row:
-            # push the earlier caption up instead of the later one down
-            y = st["y"] + int(st["size"] * 0.63)
-            for p in events[:i]:
-                if p[0] < e[1] and e[0] < p[1]:
-                    p.append(st["y"] - int(st["size"] * 0.63))
-        e.append(y)
-
-    for s, e, text, who, *ys in events:
-        y = ys[-1]
-        lines.append(f"Dialogue: 0,{ts(s)},{ts(e)},Sub,{who},0,0,0,,{{\\pos({W // 2},{y})}}{text}")
+    for s, e, text, who in events:
+        lines.append(f"Dialogue: 0,{ts(s)},{ts(e)},Sub,{who},0,0,0,,{{\\pos({W // 2},{st['y']})}}{text}")
     open(out_path, "w").write("\n".join(lines) + "\n")
 
 

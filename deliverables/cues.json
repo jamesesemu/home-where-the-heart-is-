@@ -1,0 +1,135 @@
+{
+ "duration": 49.5,
+ "scenes": [
+  [
+   "FaceTime loading -> Calling with family",
+   0.0,
+   11.55
+  ],
+  [
+   "Calling with someone you barely know",
+   11.55,
+   24.85
+  ],
+  [
+   "Calling with a new friend",
+   24.85,
+   38.1
+  ],
+  [
+   "Calling with best friend",
+   38.1,
+   49.5
+  ]
+ ],
+ "cues": [
+  {
+   "who": "JOHNNY",
+   "text": "Heyyyyy!",
+   "start": 2.55,
+   "end": 3.63
+  },
+  {
+   "who": "GRANDMA",
+   "text": "Hiiiiiii sweetheart!",
+   "start": 2.85,
+   "end": 4.23
+  },
+  {
+   "who": "JOHNNY",
+   "text": "Grandma / how are you?",
+   "start": 4.55,
+   "end": 5.83
+  },
+  {
+   "who": "GRANDMA",
+   "text": "Good good\u2026",
+   "start": 6.05,
+   "end": 7.35
+  },
+  {
+   "who": "GRANDMA",
+   "text": "You got a / girlfriend yet?",
+   "start": 8.25,
+   "end": 10.51
+  },
+  {
+   "who": "CRUSH",
+   "text": "Hey Johnny!",
+   "start": 14.35,
+   "end": 15.0
+  },
+  {
+   "who": "JOHNNY",
+   "text": "Oh hey! What's u-",
+   "start": 15.55,
+   "end": 16.5
+  },
+  {
+   "who": "JOHNNY",
+   "text": "oh wait / one sec-",
+   "start": 17.1,
+   "end": 18.81
+  },
+  {
+   "who": "CRUSH",
+   "text": "Are you okay?",
+   "start": 20.25,
+   "end": 21.95
+  },
+  {
+   "who": "JOHNNY",
+   "text": "YEAH I'M GOOD HAHAHA",
+   "start": 22.25,
+   "end": 24.29
+  },
+  {
+   "who": "FRIEND",
+   "text": "Sooo / how'd it go?",
+   "start": 27.1,
+   "end": 28.49
+  },
+  {
+   "who": "JOHNNY",
+   "text": "Yeah / I don't think / she's ever / calling me again.",
+   "start": 28.85,
+   "end": 30.76
+  },
+  {
+   "who": "FRIEND",
+   "text": "Aww / don't worry buddy,",
+   "start": 31.35,
+   "end": 32.66
+  },
+  {
+   "who": "FRIEND",
+   "text": "there's plenty / of fish / in the sea!",
+   "start": 32.8,
+   "end": 35.31
+  },
+  {
+   "who": "JOHNNY",
+   "text": "Uhh\u2026 thanks",
+   "start": 36.1,
+   "end": 37.08
+  },
+  {
+   "who": "BERT",
+   "text": "What you / looking at?",
+   "start": 43.2,
+   "end": 43.8
+  },
+  {
+   "who": "JOHNNY",
+   "text": "What are you / looking at?",
+   "start": 44.3,
+   "end": 45.02
+  },
+  {
+   "who": "BERT",
+   "text": "I dunno / I thought you / were looking / at something",
+   "start": 45.75,
+   "end": 47.68
+  }
+ ]
+}

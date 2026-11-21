@@ -402,25 +402,25 @@ DIALOGUE = [
     # --- Scene 1: family -------------------------------------------------
     ("JOHNNY", "Heyyyyy!", 6.01, 7.09, 2.55, -20, -0.15),                       # take 2 (longer stretch)
     ("GRANDMA", "Hiiiiiii sweetheart!", 12.60, 13.98, 2.85, -20, 0.15),         # take 2, overlaps Johnny
-    ("JOHNNY", "Grandma how are you?", 17.72, 19.00, 4.55, -20, 0),
+    ("JOHNNY", "Grandma / how are you?", 17.72, 19.00, 4.55, -20, 0),
     ("GRANDMA", "Good good…", 21.53, 22.83, 6.05, -20, 0),
     ("GRANDMA", "You got a / girlfriend yet?", 25.85, 28.11, 8.25, -19, 0),      # take 1: slow, deadly-serious read
     # --- Scene 2: someone you barely know ---------------------------------
     ("CRUSH", "Hey Johnny!", 40.00, 40.65, 14.35, -20, 0),
     ("JOHNNY", "Oh hey! What's u-", 44.93, 45.88, 15.55, -20, 0),
-    ("JOHNNY", "oh wait one sec-", 46.17, 47.88, 17.10, -21, 0),
+    ("JOHNNY", "oh wait / one sec-", 46.17, 47.88, 17.10, -21, 0),
     ("CRUSH", "Are you okay?", 53.10, 54.80, 20.25, -20, 0),
     ("JOHNNY", "YEAH I'M GOOD HAHAHA", 60.16, 62.20, 22.25, -17, 0),            # take 2 (no false start)
     # --- Scene 3: new friend ----------------------------------------------
-    ("FRIEND", "Sooo how'd it go?", 66.32, 67.71, 27.10, -20, 0),
-    ("JOHNNY", "Yeah I don't think / she's ever calling / me again.", 72.76, 74.67, 28.85, -20, 0),
-    ("FRIEND", "Aww don't worry buddy,", 78.83, 80.14, 31.35, -20, 0),
-    ("FRIEND", "there's plenty / of fish in the sea!", 81.23, 83.74, 32.80, -19, 0),
+    ("FRIEND", "Sooo / how'd it go?", 66.32, 67.71, 27.10, -20, 0),
+    ("JOHNNY", "Yeah / I don't think / she's ever / calling me again.", 72.76, 74.67, 28.85, -20, 0),
+    ("FRIEND", "Aww / don't worry buddy,", 78.83, 80.14, 31.35, -20, 0),
+    ("FRIEND", "there's plenty / of fish / in the sea!", 81.23, 83.74, 32.80, -19, 0),
     ("JOHNNY", "Uhh… thanks", 87.97, 88.95, 36.10, -21, 0),                    # take 1
     # --- Scene 4: best friend ---------------------------------------------
-    ("BERT", "What you looking at?", 100.31, 100.91, 43.20, -21, 0),
-    ("JOHNNY", "What are you looking at?", 103.07, 103.79, 44.30, -21, 0),
-    ("BERT", "I dunno / I thought you were / looking at something", 112.91, 114.84, 45.75, -21, 0),
+    ("BERT", "What you / looking at?", 100.31, 100.91, 43.20, -21, 0),
+    ("JOHNNY", "What are you / looking at?", 103.07, 103.79, 44.30, -21, 0),
+    ("BERT", "I dunno / I thought you / were looking / at something", 112.91, 114.84, 45.75, -21, 0),
 ]
 
 DUR = 49.5
