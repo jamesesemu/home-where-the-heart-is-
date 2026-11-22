@@ -1,1 +1,3 @@
 Short15_project.zip
+# Local secrets written by `elevenlabs onboard`
+/.env.local
