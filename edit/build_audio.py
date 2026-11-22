@@ -567,14 +567,10 @@ def main(vo_path, out_dir):
     room(14.0, 24.85 - 14.0)
     mus.put(rms_to(smp("fs_mus_waltz.mp3", 0.0, 3.2, 0.1, 0.03), -29), 14.0)    # cut on the knock
     knock = 15.55 + (45.88 - 44.93) + 0.02
-    sfx.put(peak(smp("fs_phone_drop_table.mp3"), -4), knock)                 # phone hits the table
-    sfx.put(peak(smp("fsd_dice-throw.wav"), -14), knock + 0.04)              # ...and skids
-    # pure chaos: it bangs around while he grabs at it
-    sfx.put(peak(smp("fs_phone_drops_multi.mp3", 14.9, 2.4, 0.01, 0.2), -9), knock + 0.55)
-    sfx.put(peak(smp("fs_phone_handling.mp3", 3.3, 2.1, 0.02, 0.2), -13), knock + 0.4)
-    sfx.put(peak(smp("fs_phone_on_wood.mp3"), -9), knock + 2.55)
-    sfx.put(peak(smp("fs_phone_handling.mp3", 11.2, 0.8, 0.02, 0.2), -12), knock + 2.75)
-    sfx.put(peak(smp("fsd_wood-knock-hit.wav"), -14), 21.98)                 # propped back up
+    # ElevenLabs-generated phone foley (generate_sfx.py)
+    sfx.put(peak(smp("el_phone_drop.mp3", 0.55, 0.96, 0.002, 0.15), -4), knock)      # hits the desk
+    sfx.put(peak(smp("el_phone_fumble.mp3", 0.25, 2.6, 0.01, 0.25), -12), knock + 0.5)  # chaos
+    sfx.put(peak(smp("el_phone_propup.mp3", 0.45, 0.39, 0.002, 0.1), -12), 21.98)     # propped back up
     hang_up(24.6)
 
     # ---- Scene 3: new friend (walking down the street) ---------------------
@@ -594,9 +590,9 @@ def main(vo_path, out_dir):
     ring(38.3, 1.6)
     connect(39.8)
     room(40.0, DUR - 40.0, -46)
-    tv = smp("oc_CRWDConv_Restaurant_LOOP_01.ogg", 10, DUR - 40.0, 0.4, 0.4)
-    tv = np.stack([bp_fast(tv[:, 0], 250, 2500), bp_fast(tv[:, 1], 250, 2500)], 1)
-    sfx.put(rms_to(tv, -46), 40.0)                                    # muffled TV across the room
+    tv = smp("el_tv_dialogue.mp3", 0.0, DUR - 40.0, 0.4, 0.6)        # ElevenLabs sitcom on the TV
+    tv = np.stack([bp_fast(tv[:, 0], 200, 3500), bp_fast(tv[:, 1], 200, 3500)], 1)
+    sfx.put(rms_to(tv, -40), 40.0)
     sfx.put(rms_to(smp("fs_chew_peanuts.mp3", 1.5, 3.4, 0.05, 0.2), -31), 40.0)   # Bert chewing
     sfx.put(rms_to(smp("fs_chew_peanuts2.mp3", 2.8, 1.2, 0.05, 0.2), -35), 41.6)  # Johnny chewing
     sfx.put(rms_to(smp("fs_chew_peanuts.mp3", 4.2, 1.5, 0.05, 0.3), -33), 47.9)   # back to chewing

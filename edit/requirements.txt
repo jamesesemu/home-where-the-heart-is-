@@ -1,0 +1,3 @@
+elevenlabs>=2.79
+numpy
+faster-whisper
