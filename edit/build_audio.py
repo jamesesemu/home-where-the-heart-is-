@@ -618,7 +618,7 @@ def main(vo_path, out_dir):
     el("el_bed_creak.mp3", 25.55, -30, 0.0, 0.7)                             # Bert shifts to glance
     tv = smp("el_tv_dialogue.mp3", 0.0, DUR - S4, 0.05, 0.3)                 # sitcom on the TV
     tv = np.stack([bp_fast(tv[:, 0], 200, 3500), bp_fast(tv[:, 1], 200, 3500)], 1)
-    sfx.put(rms_to(tv, -40), S4)
+    sfx.put(rms_to(tv, -34), S4)
     sfx.put(rms_to(smp("fs_chew_peanuts.mp3", 1.5, 1.6, 0.05, 0.2), -31), S4)       # Bert chewing
     sfx.put(rms_to(smp("fs_chew_peanuts2.mp3", 2.8, 1.0, 0.05, 0.2), -35), S4 + 0.6)  # Johnny chewing
     sfx.put(rms_to(smp("fs_chew_peanuts.mp3", 4.2, 0.6, 0.05, 0.3), -33), 29.2)     # back to chewing
