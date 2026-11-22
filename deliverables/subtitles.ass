@@ -14,7 +14,8 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,0:00:02.55,0:00:02.88,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}Heyyyyy
 Dialogue: 0,0:00:02.88,0:00:03.59,Sub,GRANDMA,0,0,0,,{\pos(1080,540)}Hiiiiiii
 Dialogue: 0,0:00:03.59,0:00:04.23,Sub,GRANDMA,0,0,0,,{\pos(1080,540)}sweetheart
-Dialogue: 0,0:00:04.55,0:00:05.25,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}Gr- Grandma
+Dialogue: 0,0:00:04.55,0:00:04.82,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}Gr-
+Dialogue: 0,0:00:04.82,0:00:05.25,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}Grandma
 Dialogue: 0,0:00:05.25,0:00:06.06,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}how are you?
 Dialogue: 0,0:00:06.06,0:00:07.35,Sub,GRANDMA,0,0,0,,{\pos(1080,540)}Good good…
 Dialogue: 0,0:00:08.26,0:00:08.73,Sub,GRANDMA,0,0,0,,{\pos(1080,540)}You got-
@@ -30,7 +31,8 @@ Dialogue: 0,0:00:18.05,0:00:18.81,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}one sec-
 Dialogue: 0,0:00:20.26,0:00:20.75,Sub,CRUSH,0,0,0,,{\pos(1080,540)}Are you-
 Dialogue: 0,0:00:20.75,0:00:21.05,Sub,CRUSH,0,0,0,,{\pos(1080,540)}are you-
 Dialogue: 0,0:00:21.30,0:00:21.95,Sub,CRUSH,0,0,0,,{\pos(1080,540)}are you okay?
-Dialogue: 0,0:00:22.26,0:00:22.93,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}YEAH YEAH
+Dialogue: 0,0:00:22.26,0:00:22.51,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}YEAH
+Dialogue: 0,0:00:22.51,0:00:22.93,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}YEAH
 Dialogue: 0,0:00:22.93,0:00:23.82,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}I'M GOOD
 Dialogue: 0,0:00:23.82,0:00:24.29,Sub,JOHNNY,0,0,0,,{\pos(1080,540)}HAHAHA
 Dialogue: 0,0:00:27.16,0:00:27.70,Sub,FRIEND,0,0,0,,{\pos(1080,540)}Sooo

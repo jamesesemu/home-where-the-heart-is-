@@ -423,14 +423,14 @@ DIALOGUE = [
     ("BERT", "I dunno / I thought you / were looking / at something", 112.91, 114.84, 45.75, -21, 0),
 ]
 
-# Verbatim captions (every stutter/repeat as spoken), one list per DIALOGUE
+# Verbatim captions (every stutter/repeat as spoken, each stutter its own caption), one list per DIALOGUE
 # entry: (caption text, source start, source end). Times are measured on the
 # raw recording (word timestamps checked against voice-onset bursts), so
 # captions stay locked to the words. Punctuation follows the script.
 CAPTIONS = [
     [("Heyyyyy!", 6.01, 6.99)],
     [("Hiiiiiii", 12.63, 13.25), ("sweetheart!", 13.34, 13.98)],
-    [("Gr- Grandma", 17.72, 18.34), ("how are you?", 18.42, 19.00)],
+    [("Gr-", 17.72, 17.95), ("Grandma", 17.99, 18.34), ("how are you?", 18.42, 19.00)],
     [("Good good…", 21.54, 22.83)],
     [("You got-", 25.86, 26.10), ("you got-", 26.33, 27.04),
      ("you got a", 27.25, 27.56), ("girlfriend yet?", 27.56, 28.11)],
@@ -438,7 +438,7 @@ CAPTIONS = [
     [("Oh hey!", 44.92, 45.44), ("What's u-", 45.52, 45.88)],
     [("Oh-", 46.16, 46.40), ("oh wait", 46.53, 47.01), ("one sec-", 47.12, 47.88)],
     [("Are you-", 53.11, 53.37), ("are you-", 53.60, 53.90), ("are you okay?", 54.15, 54.80)],
-    [("YEAH YEAH", 60.17, 60.77), ("I'M GOOD", 60.84, 61.67), ("HAHAHA", 61.73, 62.20)],
+    [("YEAH", 60.17, 60.38), ("YEAH", 60.42, 60.77), ("I'M GOOD", 60.84, 61.67), ("HAHAHA", 61.73, 62.20)],
     [("Sooo", 66.38, 66.90), ("how'd it go?", 66.92, 67.71)],
     [("Yeah", 72.77, 73.05), ("I don't think", 73.10, 73.42), ("she's ever", 73.42, 73.78),
      ("calling me again", 73.78, 74.67)],
