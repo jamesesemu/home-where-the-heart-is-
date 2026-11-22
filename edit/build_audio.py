@@ -126,6 +126,16 @@ class Track:
         self.L = np.zeros(secs(dur))
         self.R = np.zeros(secs(dur))
 
+    def put(self, st, at, gain_db=0.0):
+        """Add a stereo (n, 2) clip at time `at`."""
+        i = secs(at)
+        if i >= len(self.L):
+            return
+        j = min(len(self.L), i + len(st))
+        g = db(gain_db)
+        self.L[i:j] += st[: j - i, 0] * g
+        self.R[i:j] += st[: j - i, 1] * g
+
     def add(self, x, at, gain_db=0.0, pan=0.0):
         i = secs(at)
         x = x * db(gain_db)
@@ -379,6 +389,40 @@ def music_chill(dur, bpm=100):
     return out[: secs(dur)]
 
 
+
+# ------------------------------------------------------------ samples
+import os
+import subprocess
+
+ASSETS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
+_CACHE = {}
+
+
+def smp(name, start=0.0, dur=None, fin=0.005, fout=0.03):
+    """Load a recorded sound from assets/ as stereo float (n, 2), trimmed."""
+    if name not in _CACHE:
+        raw = subprocess.run(["ffmpeg", "-v", "error", "-i", os.path.join(ASSETS, name),
+                              "-ar", str(SR), "-ac", "2", "-f", "f32le", "-"],
+                             capture_output=True, check=True).stdout
+        _CACHE[name] = np.frombuffer(raw, dtype="<f4").reshape(-1, 2).astype(np.float64)
+    x = _CACHE[name][secs(start): secs(start + dur) if dur else None].copy()
+    for ch in range(2):
+        x[:, ch] = fade(x[:, ch], fin, fout)
+    return x
+
+
+def rms_to(x, target_db):
+    """RMS-normalise a stereo clip (active part only) to target dBFS."""
+    m = np.abs(x).mean(1)
+    act = x[m > m.max() * 0.05] if m.max() > 0 else x
+    r = np.sqrt(np.mean(act ** 2)) + 1e-12
+    return x * db(target_db) / r
+
+
+def peak(x, target_db):
+    return x * db(target_db) / (np.max(np.abs(x)) + 1e-12)
+
+
 # ------------------------------------------------------------ dialogue
 def load_vo(path):
     return np.fromfile(path, dtype=np.float32) if path.endswith(".f32") else _wav(path)
@@ -484,53 +528,73 @@ def main(vo_path, out_dir):
                      "chunks": [[t, round(at + max(cs, a) - a, 3), round(at + min(ce, b) - a, 3)]
                                 for t, cs, ce in caps]})
 
+    # All effects and music are real recordings from free libraries (see
+    # assets/CREDITS.md). Levels: SFX peaks set in dBFS, beds RMS-levelled.
+    def ring(at, dur):          # outgoing video-call ringing (double-ring pattern)
+        sfx.put(peak(smp("fs_ring_digital.mp3", 0, min(dur, 3.0), fout=0.15), -16), at)
+
+    def connect(at):            # call connects: bright rising chime
+        sfx.put(peak(smp("oc_UIClick_CasualMusicalOpen_OS_01.ogg"), -15), at)
+
+    def hang_up(at):            # call ends
+        sfx.put(peak(smp("fs_call_end.mp3"), -17), at)
+
+    def swoosh(at, k=1):        # screen change
+        sfx.put(peak(smp(f"oc_SWSH_Swoosh_OS_0{k}.ogg"), -18), at)
+
+    def room(at, dur, g=-50):
+        sfx.put(rms_to(smp("oc_AMBHome_RoomTone_LOOP_01.ogg", 5, dur, 0.3, 0.3), g), at)
+
     # ---- Scene 1: FaceTime loading -> family --------------------------------
-    sfx.add(sfx_calling_loop(2.0), 0.15, -14)
-    sfx.add(sfx_connect(), 2.15, -13)
-    mus.add(fade(norm_rms(music_bouncy(5.2), -20), 0.4, 0.04), 2.3, -7)          # happy bed...
-    # ...that stops dead when Grandma drops the act (silence = the joke)
-    sfx.add(amb_room(11.55 - 2.2), 2.2, -52)
-    sfx.add(sfx_end(), 11, -16)
+    ring(0.15, 2.0)
+    connect(2.1)
+    room(2.2, 11.55 - 2.2)
+    mus.put(rms_to(smp("fs_mus_ukulele.mp3", 0.0, 5.25, 0.2, 0.02), -27), 2.3)   # happy bed...
+    # ...killed by a record scratch the moment Grandma drops the act
+    sfx.put(peak(smp("fsd_record-scratch-short.wav"), -12), 7.4)
+    hang_up(11.0)
 
     # ---- Scene 2: crush -----------------------------------------------------
-    sfx.add(sfx_whoosh(), 11.35, -18)
-    sfx.add(sfx_calling_loop(2.2), 11.7, -15)
-    sfx.add(sfx_hair(2.6), 11.65, -22)                    # fixing hair while it rings
-    sfx.add(sfx_connect(), 13.9, -13)
-    mus.add(fade(norm_rms(music_awkward(17.2 - 14), -20), 0.3, 0.03), 14, -9)   # cut on the knock
-    sfx.add(amb_room(24.85 - 14), 14, -50)
-    # phone gets knocked over at the cut-off "u-"
+    swoosh(11.3, 1)
+    ring(11.7, 2.2)
+    sfx.put(rms_to(smp("fs_hair_ruffle.mp3", 4.4, 2.4, 0.1, 0.3), -34), 11.65)     # fixing hair
+    connect(13.85)
+    room(14.0, 24.85 - 14.0)
+    mus.put(rms_to(smp("fs_mus_waltz.mp3", 0.0, 3.2, 0.1, 0.03), -29), 14.0)    # cut on the knock
     knock = 15.55 + (45.88 - 44.93) + 0.02
-    sfx.add(sfx_thud(1.2), knock, -6)
-    sfx.add(sfx_rattle(0.45), knock + 0.03, -16)
-    # pure chaos: bangs, slides and fumbling while he fixes it
-    for t, w, g in [(0.55, 0.8, -9), (0.85, 1.0, -8), (1.30, 0.6, -11), (1.65, 1.1, -7),
-                    (2.05, 0.7, -10), (2.30, 0.9, -9), (2.85, 0.7, -12)]:
-        sfx.add(sfx_thud(w), knock + t, g + 1)
-    sfx.add(sfx_rattle(2.4), knock + 0.5, -21)
-    sfx.add(sfx_fumble(2.7), knock + 0.3, -16)
-    sfx.add(sfx_thud(0.7), 21.98, -12)                  # propped back up (terrible angle)
-    sfx.add(sfx_end(), 24.6, -16)
+    sfx.put(peak(smp("fs_phone_drop_table.mp3"), -4), knock)                 # phone hits the table
+    sfx.put(peak(smp("fsd_dice-throw.wav"), -14), knock + 0.04)              # ...and skids
+    # pure chaos: it bangs around while he grabs at it
+    sfx.put(peak(smp("fs_phone_drops_multi.mp3", 14.9, 2.4, 0.01, 0.2), -9), knock + 0.55)
+    sfx.put(peak(smp("fs_phone_handling.mp3", 3.3, 2.1, 0.02, 0.2), -13), knock + 0.4)
+    sfx.put(peak(smp("fs_phone_on_wood.mp3"), -9), knock + 2.55)
+    sfx.put(peak(smp("fs_phone_handling.mp3", 11.2, 0.8, 0.02, 0.2), -12), knock + 2.75)
+    sfx.put(peak(smp("fsd_wood-knock-hit.wav"), -14), 21.98)                 # propped back up
+    hang_up(24.6)
 
     # ---- Scene 3: new friend (walking down the street) ---------------------
-    sfx.add(sfx_whoosh(), 24.8, -18)
-    sfx.add(sfx_calling_loop(1.6), 25, -15)
-    sfx.add(sfx_connect(), 26.55, -13)
-    sfx.add(amb_street(38.1 - 26.6), 26.6, -32)
-    sfx.add(sfx_footsteps(38 - 26.8), 26.8, -27)
-    mus.add(fade(norm_rms(music_chill(35.45 - 26.7), -20), 0.5, 0.2), 26.7, -9)
-    # the music drops out for the cringe beat before "Uhh... thanks"
-    sfx.add(sfx_end(), 37.55, -16)
+    swoosh(24.8, 2)
+    ring(25.0, 1.6)
+    connect(26.5)
+    sfx.put(rms_to(smp("fs_street.mp3", 2.0, 38.1 - 26.6, 0.4, 0.4), -38), 26.6)
+    steps = np.concatenate([smp("fs_footsteps.mp3", 10.0, 7.0, 0.05, 0.05),
+                            smp("fs_footsteps.mp3", 28.8, 4.2, 0.05, 0.3)])
+    sfx.put(rms_to(steps, -40), 26.8)
+    mus.put(rms_to(smp("fs_mus_lofi.mp3", 0.0, 35.45 - 26.7, 0.5, 0.25), -31), 26.7)
+    # music drops out for the cringe beat before "Uhh... thanks"
+    hang_up(37.55)
 
     # ---- Scene 4: best friend (silence for ages) ---------------------------
-    sfx.add(sfx_whoosh(), 37.95, -18)
-    sfx.add(sfx_calling_loop(1.6), 38.3, -15)
-    sfx.add(sfx_connect(), 39.85, -13)
-    sfx.add(amb_tv(DUR - 40), 40, -36, pan=0.3)
-    sfx.add(sfx_chewing(3.0), 40.1, -24, pan=-0.2)          # Bert chewing peanuts
-    sfx.add(sfx_chewing(2.6, 2.0), 40.5, -27, pan=0.2)       # Johnny chewing too
-    sfx.add(sfx_chewing(DUR - 48), 47.9, -25, pan=-0.2)    # back to chewing after the line
-    sfx.add(amb_room(DUR - 40), 40, -48)
+    swoosh(37.95, 3)
+    ring(38.3, 1.6)
+    connect(39.8)
+    room(40.0, DUR - 40.0, -46)
+    tv = smp("oc_CRWDConv_Restaurant_LOOP_01.ogg", 10, DUR - 40.0, 0.4, 0.4)
+    tv = np.stack([bp_fast(tv[:, 0], 250, 2500), bp_fast(tv[:, 1], 250, 2500)], 1)
+    sfx.put(rms_to(tv, -46), 40.0)                                    # muffled TV across the room
+    sfx.put(rms_to(smp("fs_chew_peanuts.mp3", 1.5, 3.4, 0.05, 0.2), -31), 40.0)   # Bert chewing
+    sfx.put(rms_to(smp("fs_chew_peanuts2.mp3", 2.8, 1.2, 0.05, 0.2), -35), 41.6)  # Johnny chewing
+    sfx.put(rms_to(smp("fs_chew_peanuts.mp3", 4.2, 1.5, 0.05, 0.3), -33), 47.9)   # back to chewing
 
     # ---- duck music under dialogue (sidechain-style) -------------------------
     dmono = np.abs(dlg.L) + np.abs(dlg.R)
