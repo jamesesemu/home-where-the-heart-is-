@@ -13,7 +13,7 @@ W, H = 2160, 3840
 # sans, white with a solid black outline, no box/shadow, centred near the TOP
 # of frame (~14% down), 1-3 words per caption, one line at a time, hard cuts
 # with no animation, captions clear during pauses, commas/full stops dropped
-# ("?" and "!" kept), shouting/punchlines in ALL CAPS (set in the cue text).
+# ("?" kept, no "!"), exclaimed/shouted words in ALL CAPS (set in the cue text).
 STYLE = dict(
     font="Montserrat",
     bold=-1,
@@ -39,7 +39,9 @@ def ts(t):
 
 
 def clean(w):
-    """Drop commas and full stops; keep '?', '!', '…' and cut-off '-'."""
+    """Drop commas, full stops and '!' (exclaimed words are written in CAPS
+    instead); keep '?', '…' and cut-off '-'."""
+    w = w.replace("!", "")
     if w.endswith("-") or w.endswith("…"):
         return w
     return re.sub(r"[,.]+$", "", w)
