@@ -530,14 +530,19 @@ def main(vo_path, out_dir):
 
     # All effects and music are real recordings from free libraries (see
     # assets/CREDITS.md). Levels: SFX peaks set in dBFS, beds RMS-levelled.
-    def ring(at, dur):          # outgoing video-call ringing (double-ring pattern)
-        sfx.put(peak(smp("fs_ring_digital.mp3", 0, min(dur, 3.0), fout=0.15), -16), at)
+    FT = "yt_facetime.wav"      # YouTube: "Facetime Connecting and Disconnecting Sound Effect"
 
-    def connect(at):            # call connects: bright rising chime
-        sfx.put(peak(smp("oc_UIClick_CasualMusicalOpen_OS_01.ogg"), -15), at)
+    def ring(at, dur):          # FaceTime outgoing-call ripple, repeated while it rings
+        t = 0.0
+        while t < dur - 0.3:
+            sfx.put(peak(smp(FT, 0.30, min(0.85, dur - t), 0.005, 0.06), -15), at + t)
+            t += 1.25
 
-    def hang_up(at):            # call ends
-        sfx.put(peak(smp("fs_call_end.mp3"), -17), at)
+    def connect(at):            # FaceTime connect
+        sfx.put(peak(smp(FT, 2.00, 0.75, 0.005, 0.08), -14), at)
+
+    def hang_up(at):            # FaceTime disconnect
+        sfx.put(peak(smp(FT, 6.52, 0.60, 0.005, 0.08), -15), at)
 
     def swoosh(at, k=1):        # screen change
         sfx.put(peak(smp(f"oc_SWSH_Swoosh_OS_0{k}.ogg"), -18), at)
@@ -550,8 +555,8 @@ def main(vo_path, out_dir):
     connect(2.1)
     room(2.2, 11.55 - 2.2)
     mus.put(rms_to(smp("fs_mus_ukulele.mp3", 0.0, 5.25, 0.2, 0.02), -27), 2.3)   # happy bed...
-    # ...killed by a record scratch the moment Grandma drops the act
-    sfx.put(peak(smp("fsd_record-scratch-short.wav"), -12), 7.4)
+    # ...cut dead by a cinematic boom the moment Grandma turns serious
+    sfx.put(peak(smp("yt_cinematic_boom.wav", 0.10, 1.25, 0.003, 0.5), -8), 7.4)
     hang_up(11.0)
 
     # ---- Scene 2: crush -----------------------------------------------------
