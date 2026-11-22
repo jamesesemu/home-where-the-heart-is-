@@ -521,6 +521,14 @@ def main(vo_path, out_dir):
         # Levelled on the voiced part only
         body = vo[secs(a): secs(b)]
         g = db(lvl) / (np.sqrt(np.mean(body ** 2)) + 1e-9)
+        if text.startswith("Oh- / oh wait"):
+            # phone is lying face-down on the desk: muffled, boxy, a little table bounce
+            m = bp_fast(c, 180, 1100)
+            refl = np.zeros_like(m)
+            for d_ms, gn in [(9, 0.45), (17, 0.3), (28, 0.18)]:
+                k = secs(d_ms / 1000)
+                refl[k:] += m[:-k] * gn
+            c = (m + refl) * 3.6
         dlg.add(c * g, at - 0.04, pan=pan)
         # " / " in text = forced caption break (see build_subs.py)
         cues.append({"who": who, "text": text, "start": round(at, 3),
@@ -550,7 +558,17 @@ def main(vo_path, out_dir):
     def room(at, dur, g=-50):
         sfx.put(rms_to(smp("oc_AMBHome_RoomTone_LOOP_01.ogg", 5, dur, 0.3, 0.3), g), at)
 
+    def title_pop(at):          # on-screen "Calling with ..." title appears
+        sfx.put(peak(smp("el_title_pop.mp3", 0.0, 0.45, 0.002, 0.1), -20), at)
+
+    def el(name, at, g, start=0.0, dur=None, fin=0.01, fout=0.15, mode="peak"):
+        x = smp(name, start, dur, fin, fout)
+        sfx.put(peak(x, g) if mode == "peak" else rms_to(x, g), at)
+
     # ---- Scene 1: FaceTime loading -> family --------------------------------
+    title_pop(0.05)
+    el("el_grandma_phone.mp3", 2.15, -36, mode="rms")                     # Grandma holds her phone up
+    el("el_grandma_home.mp3", 2.3, -47, 0.0, 11.0 - 2.4, 0.4, 0.5, "rms")  # her cosy kitchen: clock + kettle
     ring(0.15, 2.0)
     connect(2.1)
     room(2.2, 11.55 - 2.2)
@@ -561,9 +579,11 @@ def main(vo_path, out_dir):
 
     # ---- Scene 2: crush -----------------------------------------------------
     swoosh(11.3, 1)
+    title_pop(11.45)
     ring(11.7, 2.2)
     sfx.put(rms_to(smp("fs_hair_ruffle.mp3", 4.4, 2.4, 0.1, 0.3), -34), 11.65)     # fixing hair
     connect(13.85)
+    el("el_sparkle.mp3", 13.45, -17, 0.0, 0.8)                             # hair: perfect *ding*
     room(14.0, 24.85 - 14.0)
     mus.put(rms_to(smp("fs_mus_waltz.mp3", 0.0, 3.2, 0.1, 0.03), -29), 14.0)    # cut on the knock
     knock = 15.55 + (45.88 - 44.93) + 0.02
@@ -575,6 +595,7 @@ def main(vo_path, out_dir):
 
     # ---- Scene 3: new friend (walking down the street) ---------------------
     swoosh(24.8, 2)
+    title_pop(24.95)
     ring(25.0, 1.6)
     connect(26.5)
     sfx.put(rms_to(smp("fs_street.mp3", 2.0, 38.1 - 26.6, 0.4, 0.4), -38), 26.6)
@@ -582,14 +603,22 @@ def main(vo_path, out_dir):
                             smp("fs_footsteps.mp3", 28.8, 4.2, 0.05, 0.3)])
     sfx.put(rms_to(steps, -40), 26.8)
     mus.put(rms_to(smp("fs_mus_lofi.mp3", 0.0, 35.45 - 26.7, 0.5, 0.25), -31), 26.7)
+    el("el_wind_mic.mp3", 26.6, -45, 0.0, 38.0 - 26.6, 0.5, 0.5, "rms")   # wind on his phone mic
+    el("el_car_pass.mp3", 26.55, -38, 0.0, 2.4, 0.3, 0.6, "rms")          # car passes as it connects
+    el("el_rimshot.mp3", 35.35, -15, 0.0, 1.1, 0.002, 0.3)                # "...in the SEA!" ba-dum-tss
     # music drops out for the cringe beat before "Uhh... thanks"
     hang_up(37.55)
 
     # ---- Scene 4: best friend (silence for ages) ---------------------------
     swoosh(37.95, 3)
+    title_pop(38.1)
     ring(38.3, 1.6)
     connect(39.8)
     room(40.0, DUR - 40.0, -46)
+    el("el_clock_tick.mp3", 40.0, -30, 0.0, 3.4, 0.05, 0.5)              # silence for ages...
+    el("el_peanut_bag.mp3", 40.15, -24, 0.0, 1.9)                          # rummage + shells cracking
+    el("el_nose_breathing.mp3", 40.5, -40, 1.8, 2.1, 0.2, 0.4, "rms")     # face way too close to the cam
+    el("el_bed_creak.mp3", 42.7, -30, 0.0, 0.8)                            # Bert shifts to glance at cam
     tv = smp("el_tv_dialogue.mp3", 0.0, DUR - 40.0, 0.4, 0.6)        # ElevenLabs sitcom on the TV
     tv = np.stack([bp_fast(tv[:, 0], 200, 3500), bp_fast(tv[:, 1], 200, 3500)], 1)
     sfx.put(rms_to(tv, -40), 40.0)

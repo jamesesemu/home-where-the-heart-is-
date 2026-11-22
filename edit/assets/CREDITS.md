@@ -29,4 +29,6 @@ Used: oc_AMBHome_RoomTone_LOOP_01, oc_SWSH_Swoosh_OS_01-03.
 | yt_cinematic_boom.wav | "Cinematic Boom - sound effect - [High quality]" — youtu.be/dz6Lp_PyX_Q (Grandma turns serious) |
 
 ## ElevenLabs (generated with generate_sfx.py, model eleven_text_to_sound_v3)
-el_phone_drop.mp3 (phone hits desk), el_phone_fumble.mp3 (phone chaos), el_phone_propup.mp3 (propped back up), el_tv_dialogue.mp3 (sitcom on the TV)
+el_phone_drop.mp3 (phone hits desk), el_phone_fumble.mp3 (phone chaos), el_phone_propup.mp3 (propped back up), el_tv_dialogue.mp3 (sitcom on the TV),
+el_title_pop, el_grandma_phone, el_grandma_home, el_sparkle, el_wind_mic, el_car_pass, el_rimshot,
+el_clock_tick, el_peanut_bag, el_bed_creak, el_nose_breathing (extra screenplay-beat SFX)
