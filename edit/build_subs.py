@@ -31,6 +31,21 @@ STYLE = dict(
 )
 
 
+# Johnny (main character) keeps the default white in every skit; everyone
+# else gets an easy-to-read colour that suits them (RGB hex).
+SPEAKER_COLOURS = {
+    "JOHNNY": "FFFFFF",   # white (default)
+    "GRANDMA": "FFD166",  # warm golden yellow - cosy grandma
+    "CRUSH": "FF9EC7",    # soft pink - the crush
+    "FRIEND": "7DF0A8",   # mint green - upbeat, corny friend
+    "BERT": "8CCBFF",     # sky blue - laid-back best friend
+}
+
+
+def ass_colour(rgb):
+    return f"&H00{rgb[4:6]}{rgb[2:4]}{rgb[0:2]}"
+
+
 def ts(t):
     t = max(0.0, t)
     h, r = divmod(t, 3600)
@@ -124,7 +139,9 @@ def main(cues_path, out_path, words_path=None):
     events[-1][1] = max(events[-1][1], events[-1][0] + st["min_dur"])
 
     for s, e, text, who in events:
-        lines.append(f"Dialogue: 0,{ts(s)},{ts(e)},Sub,{who},0,0,0,,{{\\pos({W // 2},{st['y']})}}{text}")
+        col = ass_colour(SPEAKER_COLOURS.get(who, "FFFFFF"))
+        lines.append(f"Dialogue: 0,{ts(s)},{ts(e)},Sub,{who},0,0,0,,"
+                     f"{{\\pos({W // 2},{st['y']})\\1c{col}&}}{text}")
     open(out_path, "w").write("\n".join(lines) + "\n")
 
 
