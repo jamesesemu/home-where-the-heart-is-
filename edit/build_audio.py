@@ -444,27 +444,27 @@ def clip(vo, src_in, src_out, pre=0.04, post=0.06, fin=0.015, fout=0.04):
 # Source times are positions in the raw recording; chosen takes noted.
 DIALOGUE = [
     # --- Scene 1: family -------------------------------------------------
-    ("JOHNNY", "Heyyyyy!", 6.01, 7.09, 2.55, -20, -0.15),                       # take 2 (longer stretch)
-    ("GRANDMA", "Hiiiiiii sweetheart!", 12.60, 13.98, 2.85, -20, 0.15),         # take 2, overlaps Johnny
-    ("JOHNNY", "Grandma / how are you?", 17.72, 19.00, 4.55, -20, 0),
-    ("GRANDMA", "Good good…", 21.53, 22.83, 6.05, -20, 0),
-    ("GRANDMA", "You got a / girlfriend yet?", 25.85, 28.11, 8.25, -19, 0),      # take 1: slow, deadly-serious read
+    ("JOHNNY", "Heyyyyy!", 6.01, 7.09, 1.10, -20, -0.15),                       # take 2 (longer stretch)
+    ("GRANDMA", "Hiiiiiii sweetheart!", 12.60, 13.98, 1.35, -20, 0.15),         # take 2, overlaps Johnny
+    ("JOHNNY", "Grandma / how are you?", 17.72, 19.00, 2.55, -20, 0),
+    ("GRANDMA", "Good good…", 21.53, 22.83, 3.83, -20, 0),
+    ("GRANDMA", "You got a / girlfriend yet?", 25.85, 28.11, 5.25, -19, 0),      # take 1: slow, deadly-serious read
     # --- Scene 2: someone you barely know ---------------------------------
-    ("CRUSH", "Hey Johnny!", 40.00, 40.65, 14.35, -20, 0),
-    ("JOHNNY", "Oh hey! What's u-", 44.93, 45.88, 15.55, -20, 0),
-    ("JOHNNY", "oh wait / one sec-", 46.17, 47.88, 17.10, -21, 0),
-    ("CRUSH", "Are you okay?", 53.10, 54.80, 20.25, -20, 0),
-    ("JOHNNY", "YEAH I'M GOOD HAHAHA", 60.16, 62.20, 22.25, -17, 0),            # take 2 (no false start)
+    ("CRUSH", "Hey Johnny!", 40.00, 40.65, 8.00, -20, 0),
+    ("JOHNNY", "Oh hey! What's u-", 44.93, 45.88, 8.40, -20, 0),
+    ("JOHNNY", "oh wait / one sec-", 46.17, 47.88, 9.60, -21, 0),
+    ("CRUSH", "Are you okay?", 53.10, 54.80, 11.31, -20, 0),
+    ("JOHNNY", "YEAH I'M GOOD HAHAHA", 60.16, 62.20, 13.05, -17, 0),            # take 2 (no false start)
     # --- Scene 3: new friend ----------------------------------------------
-    ("FRIEND", "Sooo / how'd it go?", 66.32, 67.71, 27.10, -20, 0),
-    ("JOHNNY", "Yeah / I don't think / she's ever / calling me again.", 72.76, 74.67, 28.85, -20, 0),
-    ("FRIEND", "Aww / don't worry buddy,", 78.83, 80.14, 31.35, -20, 0),
-    ("FRIEND", "there's plenty / of fish / in the sea!", 81.23, 83.74, 32.80, -19, 0),
-    ("JOHNNY", "Uhh… thanks", 87.97, 88.95, 36.10, -21, 0),                    # take 1
+    ("FRIEND", "Sooo / how'd it go?", 66.32, 67.71, 15.50, -20, 0),
+    ("JOHNNY", "Yeah / I don't think / she's ever / calling me again.", 72.76, 74.67, 16.89, -20, 0),
+    ("FRIEND", "Aww / don't worry buddy,", 78.83, 80.14, 18.80, -20, 0),
+    ("FRIEND", "there's plenty / of fish / in the sea!", 81.23, 83.74, 20.20, -19, 0),
+    ("JOHNNY", "Uhh… thanks", 87.97, 88.95, 23.00, -21, 0),                    # take 1
     # --- Scene 4: best friend ---------------------------------------------
-    ("BERT", "What are you looking at?", 100.31, 100.91, 43.20, -21, 0),
-    ("JOHNNY", "What are you / looking at?", 103.07, 103.79, 44.30, -21, 0),
-    ("BERT", "I dunno / I thought you / were looking / at something", 112.91, 114.84, 45.75, -21, 0),
+    ("BERT", "What are you looking at?", 100.31, 100.91, 25.85, -21, 0),
+    ("JOHNNY", "What are you / looking at?", 103.07, 103.79, 26.50, -21, 0),
+    ("BERT", "I dunno / I thought you / were looking / at something", 112.91, 114.84, 27.30, -21, 0),
 ]
 
 # Verbatim captions (every stutter/repeat as spoken, each stutter its own caption), one list per DIALOGUE
@@ -496,14 +496,14 @@ CAPTIONS = [
 ]
 assert len(CAPTIONS) == 18
 
-DUR = 49.5
+DUR = 29.7
 
 # Scene boundaries (timeline seconds) for the animator / cue sheet
 SCENES = [
-    ("FaceTime loading -> Calling with family", 0.0, 11.55),
-    ("Calling with someone you barely know", 11.55, 24.85),
-    ("Calling with a new friend", 24.85, 38.1),
-    ("Calling with best friend", 38.1, DUR),
+    ("FaceTime loading -> Calling with family", 0.0, 7.86),
+    ("Calling with someone you barely know", 7.86, 15.39),
+    ("Calling with a new friend", 15.39, 24.23),
+    ("Calling with best friend", 24.23, DUR),
 ]
 
 
@@ -565,66 +565,63 @@ def main(vo_path, out_dir):
         x = smp(name, start, dur, fin, fout)
         sfx.put(peak(x, g) if mode == "peak" else rms_to(x, g), at)
 
-    # ---- Scene 1: FaceTime loading -> family --------------------------------
-    title_pop(0.05)
-    el("el_grandma_phone.mp3", 2.15, -36, mode="rms")                     # Grandma holds her phone up
-    el("el_grandma_home.mp3", 2.3, -47, 0.0, 11.0 - 2.4, 0.4, 0.5, "rms")  # her cosy kitchen: clock + kettle
-    ring(0.15, 2.0)
-    connect(2.1)
-    room(2.2, 11.55 - 2.2)
-    mus.put(rms_to(smp("fs_mus_ukulele.mp3", 0.0, 5.25, 0.2, 0.02), -27), 2.3)   # happy bed...
-    # ...cut dead by a cinematic boom the moment Grandma turns serious
-    sfx.put(peak(smp("yt_cinematic_boom.wav", 0.10, 1.25, 0.003, 0.5), -8), 7.4)
-    hang_up(11.0)
+    # Pacing matched to Blobby's own cut of this script (youtube.com/shorts/_XCKMel4Uy0):
+    # hard cuts between calls, lines butt up or overlap 0.2-0.3s, ~0.1s before
+    # punchlines, 0.2-0.4s hold after them; only the best-friend call opens on a beat
+    # of silence.
+    S1, S2, S3, S4 = (sc[1] for sc in SCENES)
 
-    # ---- Scene 2: crush -----------------------------------------------------
-    swoosh(11.3, 1)
-    title_pop(11.45)
-    ring(11.7, 2.2)
-    sfx.put(rms_to(smp("fs_hair_ruffle.mp3", 4.4, 2.4, 0.1, 0.3), -34), 11.65)     # fixing hair
-    connect(13.85)
-    el("el_sparkle.mp3", 13.45, -17, 0.0, 0.8)                             # hair: perfect *ding*
-    room(14.0, 24.85 - 14.0)
-    mus.put(rms_to(smp("fs_mus_waltz.mp3", 0.0, 3.2, 0.1, 0.03), -29), 14.0)    # cut on the knock
-    knock = 15.55 + (45.88 - 44.93) + 0.02
+    # ---- Scene 1: FaceTime loading -> family --------------------------------
+    title_pop(S1)
+    ring(S1, 0.85)                                                          # one FaceTime ripple...
+    connect(0.80)                                                           # ...and it connects
+    el("el_grandma_phone.mp3", 0.95, -36, mode="rms")                       # Grandma holds her phone up
+    el("el_grandma_home.mp3", 1.0, -47, 0.0, S2 - 1.0, 0.3, 0.2, "rms")     # her kitchen: clock + kettle
+    room(0.9, S2 - 0.9)
+    mus.put(rms_to(smp("fs_mus_ukulele.mp3", 0.0, 5.15 - 1.0, 0.2, 0.02), -27), 1.0)  # happy bed...
+    # ...cut dead by a cinematic boom the moment Grandma turns serious
+    sfx.put(peak(smp("yt_cinematic_boom.wav", 0.10, 1.25, 0.003, 0.5), -8), 5.15)
+
+    # ---- Scene 2: crush (hard cut) -------------------------------------------
+    title_pop(S2)
+    connect(S2)
+    sfx.put(rms_to(smp("fs_hair_ruffle.mp3", 4.4, 0.5, 0.02, 0.2), -34), S2)        # last hair fix
+    el("el_sparkle.mp3", S2 + 0.05, -20, 0.0, 0.7)                                   # perfect *ding*
+    room(S2, S3 - S2)
+    knock = 8.40 + (45.88 - 44.93) + 0.02                                    # on the cut-off "u-"
+    mus.put(rms_to(smp("fs_mus_waltz.mp3", 0.0, knock - S2, 0.1, 0.03), -29), S2)   # cut on the knock
     # ElevenLabs-generated phone foley (generate_sfx.py)
     sfx.put(peak(smp("el_phone_drop.mp3", 0.55, 0.96, 0.002, 0.15), -4), knock)      # hits the desk
-    sfx.put(peak(smp("el_phone_fumble.mp3", 0.25, 2.6, 0.01, 0.25), -12), knock + 0.5)  # chaos
-    sfx.put(peak(smp("el_phone_propup.mp3", 0.45, 0.39, 0.002, 0.1), -12), 21.98)     # propped back up
-    hang_up(24.6)
+    sfx.put(peak(smp("el_phone_fumble.mp3", 0.25, 2.3, 0.01, 0.25), -12), knock + 0.4)  # chaos
+    sfx.put(peak(smp("el_phone_propup.mp3", 0.45, 0.39, 0.002, 0.1), -12), 12.98)    # propped back up
 
-    # ---- Scene 3: new friend (walking down the street) ---------------------
-    swoosh(24.8, 2)
-    title_pop(24.95)
-    ring(25.0, 1.6)
-    connect(26.5)
-    sfx.put(rms_to(smp("fs_street.mp3", 2.0, 38.1 - 26.6, 0.4, 0.4), -38), 26.6)
+    # ---- Scene 3: new friend walking down the street (hard cut) --------------
+    title_pop(S3)
+    connect(S3)
+    sfx.put(rms_to(smp("fs_street.mp3", 2.0, S4 - S3, 0.05, 0.05), -38), S3)
     steps = np.concatenate([smp("fs_footsteps.mp3", 10.0, 7.0, 0.05, 0.05),
-                            smp("fs_footsteps.mp3", 28.8, 4.2, 0.05, 0.3)])
-    sfx.put(rms_to(steps, -40), 26.8)
-    mus.put(rms_to(smp("fs_mus_lofi.mp3", 0.0, 35.45 - 26.7, 0.5, 0.25), -31), 26.7)
-    el("el_wind_mic.mp3", 26.6, -45, 0.0, 38.0 - 26.6, 0.5, 0.5, "rms")   # wind on his phone mic
-    el("el_car_pass.mp3", 26.55, -38, 0.0, 2.4, 0.3, 0.6, "rms")          # car passes as it connects
-    el("el_rimshot.mp3", 35.35, -15, 0.0, 1.1, 0.002, 0.3)                # "...in the SEA!" ba-dum-tss
-    # music drops out for the cringe beat before "Uhh... thanks"
-    hang_up(37.55)
+                            smp("fs_footsteps.mp3", 28.8, 2.0, 0.05, 0.1)])
+    sfx.put(rms_to(steps[: secs(S4 - S3 - 0.1)], -40), S3 + 0.1)
+    el("el_wind_mic.mp3", S3, -45, 0.0, S4 - S3, 0.05, 0.05, "rms")          # wind on his phone mic
+    el("el_car_pass.mp3", S3, -38, 0.0, 2.4, 0.1, 0.6, "rms")                # car passes as it connects
+    rim = 20.20 + (83.74 - 81.23) + 0.02                                      # right after "in the SEA!"
+    mus.put(rms_to(smp("fs_mus_lofi.mp3", 0.0, rim - S3, 0.1, 0.1), -31), S3)  # drops out for the cringe
+    el("el_rimshot.mp3", rim, -15, 0.0, 0.75, 0.002, 0.25)                    # ba-dum-tss
 
-    # ---- Scene 4: best friend (silence for ages) ---------------------------
-    swoosh(37.95, 3)
-    title_pop(38.1)
-    ring(38.3, 1.6)
-    connect(39.8)
-    room(40.0, DUR - 40.0, -46)
-    el("el_clock_tick.mp3", 40.0, -30, 0.0, 3.4, 0.05, 0.5)              # silence for ages...
-    el("el_peanut_bag.mp3", 40.15, -24, 0.0, 1.9)                          # rummage + shells cracking
-    el("el_nose_breathing.mp3", 40.5, -40, 1.8, 2.1, 0.2, 0.4, "rms")     # face way too close to the cam
-    el("el_bed_creak.mp3", 42.7, -30, 0.0, 0.8)                            # Bert shifts to glance at cam
-    tv = smp("el_tv_dialogue.mp3", 0.0, DUR - 40.0, 0.4, 0.6)        # ElevenLabs sitcom on the TV
+    # ---- Scene 4: best friend, silence for ages (hard cut) -------------------
+    title_pop(S4)
+    connect(S4)
+    room(S4, DUR - S4, -46)
+    el("el_clock_tick.mp3", S4 + 0.1, -30, 0.95, 1.6, 0.05, 0.3)            # silence for ages...
+    el("el_peanut_bag.mp3", S4 + 0.15, -24, 0.0, 1.45)                       # rummage + shells cracking
+    el("el_nose_breathing.mp3", S4 + 0.3, -40, 1.8, 1.3, 0.2, 0.3, "rms")  # face way too close
+    el("el_bed_creak.mp3", 25.55, -30, 0.0, 0.7)                             # Bert shifts to glance
+    tv = smp("el_tv_dialogue.mp3", 0.0, DUR - S4, 0.05, 0.3)                 # sitcom on the TV
     tv = np.stack([bp_fast(tv[:, 0], 200, 3500), bp_fast(tv[:, 1], 200, 3500)], 1)
-    sfx.put(rms_to(tv, -40), 40.0)
-    sfx.put(rms_to(smp("fs_chew_peanuts.mp3", 1.5, 3.4, 0.05, 0.2), -31), 40.0)   # Bert chewing
-    sfx.put(rms_to(smp("fs_chew_peanuts2.mp3", 2.8, 1.2, 0.05, 0.2), -35), 41.6)  # Johnny chewing
-    sfx.put(rms_to(smp("fs_chew_peanuts.mp3", 4.2, 1.5, 0.05, 0.3), -33), 47.9)   # back to chewing
+    sfx.put(rms_to(tv, -40), S4)
+    sfx.put(rms_to(smp("fs_chew_peanuts.mp3", 1.5, 1.6, 0.05, 0.2), -31), S4)       # Bert chewing
+    sfx.put(rms_to(smp("fs_chew_peanuts2.mp3", 2.8, 1.0, 0.05, 0.2), -35), S4 + 0.6)  # Johnny chewing
+    sfx.put(rms_to(smp("fs_chew_peanuts.mp3", 4.2, 0.6, 0.05, 0.3), -33), 29.2)     # back to chewing
 
     # ---- duck music under dialogue (sidechain-style) -------------------------
     dmono = np.abs(dlg.L) + np.abs(dlg.R)

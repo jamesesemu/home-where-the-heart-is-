@@ -11,49 +11,49 @@ Style: Sub,Montserrat,180,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,-1,0,0,0,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:02.55,0:00:02.88,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}Heyyyyy
-Dialogue: 0,0:00:02.88,0:00:03.59,Sub,GRANDMA,0,0,0,,{\pos(1080,540)\1c&H0066D1FF&}Hiiiiiii
-Dialogue: 0,0:00:03.59,0:00:04.23,Sub,GRANDMA,0,0,0,,{\pos(1080,540)\1c&H0066D1FF&}sweetheart
-Dialogue: 0,0:00:04.55,0:00:04.82,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}Gr-
-Dialogue: 0,0:00:04.82,0:00:05.25,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}Grandma
-Dialogue: 0,0:00:05.25,0:00:06.06,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}how are you?
-Dialogue: 0,0:00:06.06,0:00:07.35,Sub,GRANDMA,0,0,0,,{\pos(1080,540)\1c&H0066D1FF&}Good good…
-Dialogue: 0,0:00:08.26,0:00:08.73,Sub,GRANDMA,0,0,0,,{\pos(1080,540)\1c&H0066D1FF&}You got-
-Dialogue: 0,0:00:08.73,0:00:09.65,Sub,GRANDMA,0,0,0,,{\pos(1080,540)\1c&H0066D1FF&}you got-
-Dialogue: 0,0:00:09.65,0:00:09.96,Sub,GRANDMA,0,0,0,,{\pos(1080,540)\1c&H0066D1FF&}you got a
-Dialogue: 0,0:00:09.96,0:00:10.51,Sub,GRANDMA,0,0,0,,{\pos(1080,540)\1c&H0066D1FF&}girlfriend yet?
-Dialogue: 0,0:00:14.40,0:00:15.00,Sub,CRUSH,0,0,0,,{\pos(1080,540)\1c&H00C79EFF&}Hey Johnny
-Dialogue: 0,0:00:15.55,0:00:16.14,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}Oh hey
-Dialogue: 0,0:00:16.14,0:00:16.50,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}What's u-
-Dialogue: 0,0:00:17.10,0:00:17.46,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}Oh-
-Dialogue: 0,0:00:17.46,0:00:18.05,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}oh wait
-Dialogue: 0,0:00:18.05,0:00:18.81,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}one sec-
-Dialogue: 0,0:00:20.26,0:00:20.75,Sub,CRUSH,0,0,0,,{\pos(1080,540)\1c&H00C79EFF&}Are you-
-Dialogue: 0,0:00:20.75,0:00:21.05,Sub,CRUSH,0,0,0,,{\pos(1080,540)\1c&H00C79EFF&}are you-
-Dialogue: 0,0:00:21.30,0:00:21.95,Sub,CRUSH,0,0,0,,{\pos(1080,540)\1c&H00C79EFF&}are you okay?
-Dialogue: 0,0:00:22.26,0:00:22.51,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}YEAH
-Dialogue: 0,0:00:22.51,0:00:22.93,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}YEAH
-Dialogue: 0,0:00:22.93,0:00:23.82,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}I'M GOOD
-Dialogue: 0,0:00:23.82,0:00:24.29,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}HAHAHA
-Dialogue: 0,0:00:27.16,0:00:27.70,Sub,FRIEND,0,0,0,,{\pos(1080,540)\1c&H00A8F07D&}Sooo
-Dialogue: 0,0:00:27.70,0:00:28.49,Sub,FRIEND,0,0,0,,{\pos(1080,540)\1c&H00A8F07D&}how'd it go?
-Dialogue: 0,0:00:28.86,0:00:29.19,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}Yeah
-Dialogue: 0,0:00:29.19,0:00:29.51,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}I don't think
-Dialogue: 0,0:00:29.51,0:00:29.87,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}she's ever
-Dialogue: 0,0:00:29.87,0:00:30.76,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}calling me again
-Dialogue: 0,0:00:31.35,0:00:31.64,Sub,FRIEND,0,0,0,,{\pos(1080,540)\1c&H00A8F07D&}Aww
-Dialogue: 0,0:00:31.64,0:00:32.87,Sub,FRIEND,0,0,0,,{\pos(1080,540)\1c&H00A8F07D&}don't worry buddy
-Dialogue: 0,0:00:32.87,0:00:33.59,Sub,FRIEND,0,0,0,,{\pos(1080,540)\1c&H00A8F07D&}There's plenty
-Dialogue: 0,0:00:33.59,0:00:34.25,Sub,FRIEND,0,0,0,,{\pos(1080,540)\1c&H00A8F07D&}of fish
-Dialogue: 0,0:00:34.25,0:00:35.31,Sub,FRIEND,0,0,0,,{\pos(1080,540)\1c&H00A8F07D&}in the SEA
-Dialogue: 0,0:00:36.10,0:00:36.60,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}Uhh…
-Dialogue: 0,0:00:36.60,0:00:37.08,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}thanks
-Dialogue: 0,0:00:43.22,0:00:43.49,Sub,BERT,0,0,0,,{\pos(1080,540)\1c&H00FFCB8C&}What are you
-Dialogue: 0,0:00:43.49,0:00:43.80,Sub,BERT,0,0,0,,{\pos(1080,540)\1c&H00FFCB8C&}looking at?
-Dialogue: 0,0:00:44.35,0:00:44.64,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}What are you
-Dialogue: 0,0:00:44.64,0:00:45.02,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}looking at?
-Dialogue: 0,0:00:45.75,0:00:46.19,Sub,BERT,0,0,0,,{\pos(1080,540)\1c&H00FFCB8C&}I dunno
-Dialogue: 0,0:00:46.19,0:00:46.66,Sub,BERT,0,0,0,,{\pos(1080,540)\1c&H00FFCB8C&}I dunno
-Dialogue: 0,0:00:46.66,0:00:46.94,Sub,BERT,0,0,0,,{\pos(1080,540)\1c&H00FFCB8C&}I thought you
-Dialogue: 0,0:00:46.94,0:00:47.18,Sub,BERT,0,0,0,,{\pos(1080,540)\1c&H00FFCB8C&}were looking
-Dialogue: 0,0:00:47.18,0:00:47.68,Sub,BERT,0,0,0,,{\pos(1080,540)\1c&H00FFCB8C&}at something
+Dialogue: 0,0:00:01.10,0:00:01.38,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}Heyyyyy
+Dialogue: 0,0:00:01.38,0:00:02.09,Sub,GRANDMA,0,0,0,,{\pos(1080,540)\1c&H0066D1FF&}Hiiiiiii
+Dialogue: 0,0:00:02.09,0:00:02.55,Sub,GRANDMA,0,0,0,,{\pos(1080,540)\1c&H0066D1FF&}sweetheart
+Dialogue: 0,0:00:02.55,0:00:02.82,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}Gr-
+Dialogue: 0,0:00:02.82,0:00:03.25,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}Grandma
+Dialogue: 0,0:00:03.25,0:00:03.84,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}how are you?
+Dialogue: 0,0:00:03.84,0:00:05.26,Sub,GRANDMA,0,0,0,,{\pos(1080,540)\1c&H0066D1FF&}Good good…
+Dialogue: 0,0:00:05.26,0:00:05.73,Sub,GRANDMA,0,0,0,,{\pos(1080,540)\1c&H0066D1FF&}You got-
+Dialogue: 0,0:00:05.73,0:00:06.65,Sub,GRANDMA,0,0,0,,{\pos(1080,540)\1c&H0066D1FF&}you got-
+Dialogue: 0,0:00:06.65,0:00:06.96,Sub,GRANDMA,0,0,0,,{\pos(1080,540)\1c&H0066D1FF&}you got a
+Dialogue: 0,0:00:06.96,0:00:07.51,Sub,GRANDMA,0,0,0,,{\pos(1080,540)\1c&H0066D1FF&}girlfriend yet?
+Dialogue: 0,0:00:08.05,0:00:08.40,Sub,CRUSH,0,0,0,,{\pos(1080,540)\1c&H00C79EFF&}Hey Johnny
+Dialogue: 0,0:00:08.40,0:00:08.99,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}Oh hey
+Dialogue: 0,0:00:08.99,0:00:09.35,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}What's u-
+Dialogue: 0,0:00:09.60,0:00:09.96,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}Oh-
+Dialogue: 0,0:00:09.96,0:00:10.55,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}oh wait
+Dialogue: 0,0:00:10.55,0:00:11.32,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}one sec-
+Dialogue: 0,0:00:11.32,0:00:11.81,Sub,CRUSH,0,0,0,,{\pos(1080,540)\1c&H00C79EFF&}Are you-
+Dialogue: 0,0:00:11.81,0:00:12.11,Sub,CRUSH,0,0,0,,{\pos(1080,540)\1c&H00C79EFF&}are you-
+Dialogue: 0,0:00:12.36,0:00:13.06,Sub,CRUSH,0,0,0,,{\pos(1080,540)\1c&H00C79EFF&}are you okay?
+Dialogue: 0,0:00:13.06,0:00:13.31,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}YEAH
+Dialogue: 0,0:00:13.31,0:00:13.73,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}YEAH
+Dialogue: 0,0:00:13.73,0:00:14.62,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}I'M GOOD
+Dialogue: 0,0:00:14.62,0:00:15.09,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}HAHAHA
+Dialogue: 0,0:00:15.56,0:00:16.10,Sub,FRIEND,0,0,0,,{\pos(1080,540)\1c&H00A8F07D&}Sooo
+Dialogue: 0,0:00:16.10,0:00:16.90,Sub,FRIEND,0,0,0,,{\pos(1080,540)\1c&H00A8F07D&}how'd it go?
+Dialogue: 0,0:00:16.90,0:00:17.23,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}Yeah
+Dialogue: 0,0:00:17.23,0:00:17.55,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}I don't think
+Dialogue: 0,0:00:17.55,0:00:17.91,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}she's ever
+Dialogue: 0,0:00:17.91,0:00:18.80,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}calling me again
+Dialogue: 0,0:00:18.80,0:00:19.09,Sub,FRIEND,0,0,0,,{\pos(1080,540)\1c&H00A8F07D&}Aww
+Dialogue: 0,0:00:19.09,0:00:20.27,Sub,FRIEND,0,0,0,,{\pos(1080,540)\1c&H00A8F07D&}don't worry buddy
+Dialogue: 0,0:00:20.27,0:00:20.99,Sub,FRIEND,0,0,0,,{\pos(1080,540)\1c&H00A8F07D&}There's plenty
+Dialogue: 0,0:00:20.99,0:00:21.65,Sub,FRIEND,0,0,0,,{\pos(1080,540)\1c&H00A8F07D&}of fish
+Dialogue: 0,0:00:21.65,0:00:22.71,Sub,FRIEND,0,0,0,,{\pos(1080,540)\1c&H00A8F07D&}in the SEA
+Dialogue: 0,0:00:23.00,0:00:23.50,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}Uhh…
+Dialogue: 0,0:00:23.50,0:00:23.98,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}thanks
+Dialogue: 0,0:00:25.87,0:00:26.14,Sub,BERT,0,0,0,,{\pos(1080,540)\1c&H00FFCB8C&}What are you
+Dialogue: 0,0:00:26.14,0:00:26.55,Sub,BERT,0,0,0,,{\pos(1080,540)\1c&H00FFCB8C&}looking at?
+Dialogue: 0,0:00:26.55,0:00:26.84,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}What are you
+Dialogue: 0,0:00:26.84,0:00:27.30,Sub,JOHNNY,0,0,0,,{\pos(1080,540)\1c&H00FFFFFF&}looking at?
+Dialogue: 0,0:00:27.30,0:00:27.74,Sub,BERT,0,0,0,,{\pos(1080,540)\1c&H00FFCB8C&}I dunno
+Dialogue: 0,0:00:27.74,0:00:28.21,Sub,BERT,0,0,0,,{\pos(1080,540)\1c&H00FFCB8C&}I dunno
+Dialogue: 0,0:00:28.21,0:00:28.49,Sub,BERT,0,0,0,,{\pos(1080,540)\1c&H00FFCB8C&}I thought you
+Dialogue: 0,0:00:28.49,0:00:28.73,Sub,BERT,0,0,0,,{\pos(1080,540)\1c&H00FFCB8C&}were looking
+Dialogue: 0,0:00:28.73,0:00:29.23,Sub,BERT,0,0,0,,{\pos(1080,540)\1c&H00FFCB8C&}at something
