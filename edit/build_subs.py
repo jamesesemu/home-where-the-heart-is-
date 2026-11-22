@@ -13,7 +13,7 @@ W, H = 2160, 3840
 # sans, white with a solid black outline, no box/shadow, centred near the TOP
 # of frame (~14% down), 1-3 words per caption, one line at a time, hard cuts
 # with no animation, captions clear during pauses, commas/full stops dropped
-# ("?" kept), shouting/punchlines in ALL CAPS (set in the cue text).
+# ("?" and "!" kept), shouting/punchlines in ALL CAPS (set in the cue text).
 STYLE = dict(
     font="Montserrat",
     bold=-1,
@@ -27,7 +27,7 @@ STYLE = dict(
     max_words=3,
     max_chars=16,
     min_dur=0.22,
-    join_gap=0.15,        # gaps shorter than this are bridged; longer ones go blank
+    join_gap=0.25,        # gaps shorter than this are bridged; longer ones go blank
 )
 
 
@@ -39,10 +39,10 @@ def ts(t):
 
 
 def clean(w):
-    """Reference keeps '?' but drops commas, full stops, ellipses and '!'."""
-    if w.endswith("-"):
+    """Drop commas and full stops; keep '?', '!', '…' and cut-off '-'."""
+    if w.endswith("-") or w.endswith("…"):
         return w
-    return re.sub(r"[,.…!]+$", "", w)
+    return re.sub(r"[,.]+$", "", w)
 
 
 def chunk_words(words, max_words, max_chars):
@@ -85,6 +85,10 @@ def main(cues_path, out_path, words_path=None):
 
     events = []  # [start, end, text, who]
     for i, c in enumerate(data["cues"]):
+        if c.get("chunks"):  # verbatim captions with measured timings
+            events += [[s, e, " ".join(clean(w) for w in t.split()), c["who"]]
+                       for t, s, e in c["chunks"]]
+            continue
         # " / " in the cue text marks a preferred phrase break
         words = [w for w in c["text"].split() if w != "/"]
         chunks = [ch for part in c["text"].split(" / ")

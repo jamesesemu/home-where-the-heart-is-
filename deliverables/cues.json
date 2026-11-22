@@ -27,109 +27,365 @@
    "who": "JOHNNY",
    "text": "Heyyyyy!",
    "start": 2.55,
-   "end": 3.63
+   "end": 3.63,
+   "chunks": [
+    [
+     "Heyyyyy!",
+     2.55,
+     3.53
+    ]
+   ]
   },
   {
    "who": "GRANDMA",
    "text": "Hiiiiiii sweetheart!",
    "start": 2.85,
-   "end": 4.23
+   "end": 4.23,
+   "chunks": [
+    [
+     "Hiiiiiii",
+     2.88,
+     3.5
+    ],
+    [
+     "sweetheart!",
+     3.59,
+     4.23
+    ]
+   ]
   },
   {
    "who": "JOHNNY",
    "text": "Grandma / how are you?",
    "start": 4.55,
-   "end": 5.83
+   "end": 5.83,
+   "chunks": [
+    [
+     "Gr- Grandma",
+     4.55,
+     5.17
+    ],
+    [
+     "how are you?",
+     5.25,
+     5.83
+    ]
+   ]
   },
   {
    "who": "GRANDMA",
    "text": "Good good\u2026",
    "start": 6.05,
-   "end": 7.35
+   "end": 7.35,
+   "chunks": [
+    [
+     "Good good\u2026",
+     6.06,
+     7.35
+    ]
+   ]
   },
   {
    "who": "GRANDMA",
    "text": "You got a / girlfriend yet?",
    "start": 8.25,
-   "end": 10.51
+   "end": 10.51,
+   "chunks": [
+    [
+     "You got-",
+     8.26,
+     8.5
+    ],
+    [
+     "you got-",
+     8.73,
+     9.44
+    ],
+    [
+     "you got a",
+     9.65,
+     9.96
+    ],
+    [
+     "girlfriend yet?",
+     9.96,
+     10.51
+    ]
+   ]
   },
   {
    "who": "CRUSH",
    "text": "Hey Johnny!",
    "start": 14.35,
-   "end": 15.0
+   "end": 15.0,
+   "chunks": [
+    [
+     "Hey Johnny!",
+     14.4,
+     15.0
+    ]
+   ]
   },
   {
    "who": "JOHNNY",
    "text": "Oh hey! What's u-",
    "start": 15.55,
-   "end": 16.5
+   "end": 16.5,
+   "chunks": [
+    [
+     "Oh hey!",
+     15.55,
+     16.06
+    ],
+    [
+     "What's u-",
+     16.14,
+     16.5
+    ]
+   ]
   },
   {
    "who": "JOHNNY",
    "text": "oh wait / one sec-",
    "start": 17.1,
-   "end": 18.81
+   "end": 18.81,
+   "chunks": [
+    [
+     "Oh-",
+     17.1,
+     17.33
+    ],
+    [
+     "oh wait",
+     17.46,
+     17.94
+    ],
+    [
+     "one sec-",
+     18.05,
+     18.81
+    ]
+   ]
   },
   {
    "who": "CRUSH",
    "text": "Are you okay?",
    "start": 20.25,
-   "end": 21.95
+   "end": 21.95,
+   "chunks": [
+    [
+     "Are you-",
+     20.26,
+     20.52
+    ],
+    [
+     "are you-",
+     20.75,
+     21.05
+    ],
+    [
+     "are you okay?",
+     21.3,
+     21.95
+    ]
+   ]
   },
   {
    "who": "JOHNNY",
    "text": "YEAH I'M GOOD HAHAHA",
    "start": 22.25,
-   "end": 24.29
+   "end": 24.29,
+   "chunks": [
+    [
+     "YEAH YEAH",
+     22.26,
+     22.86
+    ],
+    [
+     "I'M GOOD",
+     22.93,
+     23.76
+    ],
+    [
+     "HAHAHA",
+     23.82,
+     24.29
+    ]
+   ]
   },
   {
    "who": "FRIEND",
    "text": "Sooo / how'd it go?",
    "start": 27.1,
-   "end": 28.49
+   "end": 28.49,
+   "chunks": [
+    [
+     "Sooo",
+     27.16,
+     27.68
+    ],
+    [
+     "how'd it go?",
+     27.7,
+     28.49
+    ]
+   ]
   },
   {
    "who": "JOHNNY",
    "text": "Yeah / I don't think / she's ever / calling me again.",
    "start": 28.85,
-   "end": 30.76
+   "end": 30.76,
+   "chunks": [
+    [
+     "Yeah",
+     28.86,
+     29.14
+    ],
+    [
+     "I don't think",
+     29.19,
+     29.51
+    ],
+    [
+     "she's ever",
+     29.51,
+     29.87
+    ],
+    [
+     "calling me again",
+     29.87,
+     30.76
+    ]
+   ]
   },
   {
    "who": "FRIEND",
    "text": "Aww / don't worry buddy,",
    "start": 31.35,
-   "end": 32.66
+   "end": 32.66,
+   "chunks": [
+    [
+     "Aww",
+     31.35,
+     31.57
+    ],
+    [
+     "don't worry buddy",
+     31.64,
+     32.66
+    ]
+   ]
   },
   {
    "who": "FRIEND",
    "text": "there's plenty / of fish / in the sea!",
    "start": 32.8,
-   "end": 35.31
+   "end": 35.31,
+   "chunks": [
+    [
+     "There's plenty",
+     32.87,
+     33.59
+    ],
+    [
+     "of fish",
+     33.59,
+     34.25
+    ],
+    [
+     "in the SEA!",
+     34.25,
+     35.31
+    ]
+   ]
   },
   {
    "who": "JOHNNY",
    "text": "Uhh\u2026 thanks",
    "start": 36.1,
-   "end": 37.08
+   "end": 37.08,
+   "chunks": [
+    [
+     "Uhh\u2026",
+     36.1,
+     36.42
+    ],
+    [
+     "thanks",
+     36.6,
+     37.08
+    ]
+   ]
   },
   {
    "who": "BERT",
-   "text": "What you / looking at?",
+   "text": "What are you looking at?",
    "start": 43.2,
-   "end": 43.8
+   "end": 43.8,
+   "chunks": [
+    [
+     "What are you",
+     43.22,
+     43.49
+    ],
+    [
+     "looking at?",
+     43.49,
+     43.8
+    ]
+   ]
   },
   {
    "who": "JOHNNY",
    "text": "What are you / looking at?",
    "start": 44.3,
-   "end": 45.02
+   "end": 45.02,
+   "chunks": [
+    [
+     "What are you",
+     44.35,
+     44.64
+    ],
+    [
+     "looking at?",
+     44.64,
+     45.02
+    ]
+   ]
   },
   {
    "who": "BERT",
    "text": "I dunno / I thought you / were looking / at something",
    "start": 45.75,
-   "end": 47.68
+   "end": 47.68,
+   "chunks": [
+    [
+     "I dunno",
+     45.75,
+     46.14
+    ],
+    [
+     "I dunno",
+     46.19,
+     46.6
+    ],
+    [
+     "I thought you",
+     46.66,
+     46.94
+    ],
+    [
+     "were looking",
+     46.94,
+     47.18
+    ],
+    [
+     "at something",
+     47.18,
+     47.68
+    ]
+   ]
   }
  ]
 }

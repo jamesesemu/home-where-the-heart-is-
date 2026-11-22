@@ -418,10 +418,39 @@ DIALOGUE = [
     ("FRIEND", "there's plenty / of fish / in the sea!", 81.23, 83.74, 32.80, -19, 0),
     ("JOHNNY", "Uhh… thanks", 87.97, 88.95, 36.10, -21, 0),                    # take 1
     # --- Scene 4: best friend ---------------------------------------------
-    ("BERT", "What you / looking at?", 100.31, 100.91, 43.20, -21, 0),
+    ("BERT", "What are you looking at?", 100.31, 100.91, 43.20, -21, 0),
     ("JOHNNY", "What are you / looking at?", 103.07, 103.79, 44.30, -21, 0),
     ("BERT", "I dunno / I thought you / were looking / at something", 112.91, 114.84, 45.75, -21, 0),
 ]
+
+# Verbatim captions (every stutter/repeat as spoken), one list per DIALOGUE
+# entry: (caption text, source start, source end). Times are measured on the
+# raw recording (word timestamps checked against voice-onset bursts), so
+# captions stay locked to the words. Punctuation follows the script.
+CAPTIONS = [
+    [("Heyyyyy!", 6.01, 6.99)],
+    [("Hiiiiiii", 12.63, 13.25), ("sweetheart!", 13.34, 13.98)],
+    [("Gr- Grandma", 17.72, 18.34), ("how are you?", 18.42, 19.00)],
+    [("Good good…", 21.54, 22.83)],
+    [("You got-", 25.86, 26.10), ("you got-", 26.33, 27.04),
+     ("you got a", 27.25, 27.56), ("girlfriend yet?", 27.56, 28.11)],
+    [("Hey Johnny!", 40.05, 40.65)],
+    [("Oh hey!", 44.92, 45.44), ("What's u-", 45.52, 45.88)],
+    [("Oh-", 46.16, 46.40), ("oh wait", 46.53, 47.01), ("one sec-", 47.12, 47.88)],
+    [("Are you-", 53.11, 53.37), ("are you-", 53.60, 53.90), ("are you okay?", 54.15, 54.80)],
+    [("YEAH YEAH", 60.17, 60.77), ("I'M GOOD", 60.84, 61.67), ("HAHAHA", 61.73, 62.20)],
+    [("Sooo", 66.38, 66.90), ("how'd it go?", 66.92, 67.71)],
+    [("Yeah", 72.77, 73.05), ("I don't think", 73.10, 73.42), ("she's ever", 73.42, 73.78),
+     ("calling me again", 73.78, 74.67)],
+    [("Aww", 78.82, 79.05), ("don't worry buddy", 79.12, 80.14)],
+    [("There's plenty", 81.30, 82.02), ("of fish", 82.02, 82.68), ("in the SEA!", 82.68, 83.74)],
+    [("Uhh…", 87.96, 88.29), ("thanks", 88.47, 88.95)],
+    [("What are you", 100.33, 100.60), ("looking at?", 100.60, 100.91)],
+    [("What are you", 103.12, 103.41), ("looking at?", 103.41, 103.79)],
+    [("I dunno", 112.90, 113.30), ("I dunno", 113.35, 113.76), ("I thought you", 113.82, 114.10),
+     ("were looking", 114.10, 114.34), ("at something", 114.34, 114.84)],
+]
+assert len(CAPTIONS) == 18
 
 DUR = 49.5
 
@@ -440,7 +469,7 @@ def main(vo_path, out_dir):
     dlg, sfx, mus = Track(DUR), Track(DUR), Track(DUR)
     cues = []
 
-    for who, text, a, b, at, lvl, pan in DIALOGUE:
+    for (who, text, a, b, at, lvl, pan), caps in zip(DIALOGUE, CAPTIONS):
         c = clip(vo, a, b)
         # Hard cut-offs for interrupted lines (no tail)
         if text.endswith("-"):  # interrupted line
@@ -451,7 +480,9 @@ def main(vo_path, out_dir):
         dlg.add(c * g, at - 0.04, pan=pan)
         # " / " in text = forced caption break (see build_subs.py)
         cues.append({"who": who, "text": text, "start": round(at, 3),
-                     "end": round(at + (b - a), 3)})
+                     "end": round(at + (b - a), 3),
+                     "chunks": [[t, round(at + max(cs, a) - a, 3), round(at + min(ce, b) - a, 3)]
+                                for t, cs, ce in caps]})
 
     # ---- Scene 1: FaceTime loading -> family --------------------------------
     sfx.add(sfx_calling_loop(2.0), 0.15, -14)
